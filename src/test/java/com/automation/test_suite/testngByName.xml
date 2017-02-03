@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAllByName">
+
+    <test name="test">
+
+        <groups>
+            <run>
+                <include name="pageTest" />
+                <include name="restTest" />
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.automation.test_suite.GoogleSearchPageTest"/>
+            <class name="com.automation.test_suite.GoogleTranslatePageTest"/>
+            <class name="com.automation.test_suite.RestClientTest"/>
+        </classes>
+
+    </test>
+</suite>

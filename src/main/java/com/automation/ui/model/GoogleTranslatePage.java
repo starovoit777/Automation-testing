@@ -6,74 +6,58 @@ import org.openqa.selenium.WebDriver;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Micro on 2/1/2017.
+ * Created by Serhii Starovoit on 2/1/2017.
  */
-public class GoogleTranslatePage {
-    protected WebDriver driver;
 
+/**
+ * Page Object for google translate page
+ */
+public class GoogleTranslatePage extends AbstractPage {
+
+
+    public static final String GOOGLE_TRANSLATE_PAGE_SELECT_ITEM_GERMAN = ":4n"; //
+    public static final String GOOGLE_TRANSLATE_PAGE_SELECTOR_SUBMIT = "#gt-submit";
+    public static final String GOOGLE_TRANSLATE_PAGE_SELECTOR_LANGUAGE_SELECTION = "#gt-tl-gms";
+    public static final String GOOGLE_TRANSLATE_PAGE_SELECTOR_INPUT_FIELD = "#source";
+    public static final String GOOGLE_TRANSLATE_PAGE_SELECTOR_OUTPUT_FIELD = "#result_box";
+    public static final String RAPLECE_PATTERN = "/[^A-Za-z0-9]/";
+
+    /**
+     * Constructor gets an argument of type driver. To be able at one driver created to work with multiple pages.
+     */
     public GoogleTranslatePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void open(String url) {
-        driver.get(url);
-    }
-
-    public void openPage() {
-        driver.get("https://translate.google.com");
-    }
-
-    public void close() {
-        driver.close();
-    }
-
-    public String getTitle() {
-        return driver.getTitle();
-    }
-
+    /**
+     * Changes target language at German.
+     */
     public void chooseGermanLanguage() {
-        driver.findElement(By.id(":4n")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.id(GOOGLE_TRANSLATE_PAGE_SELECT_ITEM_GERMAN)).click();
+        driver.manage().timeouts().implicitlyWait(WAITING_TIME_10_SECONDS, TimeUnit.SECONDS);
     }
 
-    public void chooseChineseSimplifiedLanguage() {
-        driver.findElement(By.id(":42")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
-
-    public void chooseChineseTraditionalLanguage() {
-        driver.findElement(By.id(":43")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
-
-    public void chooseKoreanLanguage() {
-        driver.findElement(By.id(":44")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
-
-    public void chooseNetherlandsLanguage() {
-        driver.findElement(By.id(":4m")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
-
+    /**
+     * Runs translation.
+     */
     public void translate() {
-        driver.findElement(By.cssSelector("#gt-submit")).click();
+        driver.findElement(By.cssSelector(GOOGLE_TRANSLATE_PAGE_SELECTOR_SUBMIT)).click();
     }
 
+    /**
+     * Enters word for translation
+     */
     public void enterWord(String word) {
-        driver.findElement(By.cssSelector("#source")).clear();
-        driver.findElement(By.cssSelector("#source")).sendKeys(word);
-        driver.findElement(By.cssSelector("#gt-tl-gms")).click();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.findElement(By.cssSelector(GOOGLE_TRANSLATE_PAGE_SELECTOR_INPUT_FIELD)).clear();
+        driver.findElement(By.cssSelector(GOOGLE_TRANSLATE_PAGE_SELECTOR_INPUT_FIELD)).sendKeys(word);
+        driver.findElement(By.cssSelector(GOOGLE_TRANSLATE_PAGE_SELECTOR_LANGUAGE_SELECTION)).click();
+        driver.manage().timeouts().implicitlyWait(WAITING_TIME_10_SECONDS, TimeUnit.SECONDS);
     }
 
+    /**
+     * @return the result of translation
+     */
     public String getTranslateWord() {
-        String translationResultString = driver.findElement(By.cssSelector("#result_box")).getText();
-        translationResultString = translationResultString.replaceAll("/[^A-Za-z0-9]/", "");
-        return translationResultString;
-    }
-
-    public String getURL() {
-        return driver.getCurrentUrl();
+        return driver.findElement(By.cssSelector(GOOGLE_TRANSLATE_PAGE_SELECTOR_OUTPUT_FIELD)).getText().replaceAll(RAPLECE_PATTERN, "");
     }
 }
