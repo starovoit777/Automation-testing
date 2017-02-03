@@ -25,7 +25,7 @@ public class RestClient {
     private WebResource webResource;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public RestClient() {
         client = Client.create();
@@ -33,7 +33,7 @@ public class RestClient {
     }
 
     /**
-     * @return list of comments java.List.class
+     * @return list of comments.
      */
     public List getComments() {
         ArrayList<Comment> listComments = new ArrayList<>();
@@ -53,7 +53,7 @@ public class RestClient {
     }
 
     /**
-     * @return list of comments java.List.class
+     * @return Photo
      */
     public Photo getPhotoById(int id) {
         ArrayList<Photo> listPhotos = new ArrayList<>();
@@ -75,7 +75,7 @@ public class RestClient {
     }
 
     /**
-     *Sends an object of type user with fields to fill following link
+     * Sends an object of type user with fields to fill following link.
      * @return object type WebResource
      */
     public ClientResponse createUser(User user) {

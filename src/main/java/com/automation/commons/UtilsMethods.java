@@ -13,8 +13,6 @@ import java.util.Random;
 public class UtilsMethods {
 
     /**
-     * Get comments
-     *
      * @return String of 20 random letters
      */
     public static String randomStringGenerator() {

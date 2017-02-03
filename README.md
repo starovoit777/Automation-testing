@@ -6,10 +6,11 @@ Started required.
 there are for all operating systems  https://github.com/mozilla/geckodriver/releases
 
 2 go to the project directory of the console and run
-mvn clean test -DsuiteXmlFile=testngByPath.xml
-or
-mvn clean test -DsuiteXmlFile=testngByPath.xml
 
+
+"mvn clean test -DsuiteXmlFile=testngByPath.xml"
+or
+"mvn clean test -DsuiteXmlFile=testngByName.xml"
 both file launches all tests
 
 
