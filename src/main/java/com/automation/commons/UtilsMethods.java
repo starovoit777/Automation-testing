@@ -8,7 +8,7 @@ import com.automation.rest.model.User;
 import java.util.Random;
 
 /**
- * Created by Serhii Starovoit on 2/2/2017.
+ * Created by Serhii Starovoit on 2/2/2017. after party)
  */
 public class UtilsMethods {
 
